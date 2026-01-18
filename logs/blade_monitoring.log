@@ -1,0 +1,104 @@
+2026-01-13 10:49:45,392 - blade_monitoring - INFO - 从配置文件加载配置
+2026-01-13 10:49:45,392 - blade_monitoring - INFO - 初始化风机叶片监控系统...
+2026-01-13 10:49:45,412 - blade_monitoring - INFO - 成功加载 4 个相机配置
+2026-01-13 10:49:52,854 - blade_monitoring - INFO - 检测模型加载成功
+2026-01-13 10:49:52,855 - blade_monitoring - INFO - 告警系统初始化完成，告警保存到: alerts
+2026-01-13 10:49:52,855 - blade_monitoring - INFO - 系统初始化完成
+2026-01-13 10:49:52,855 - blade_monitoring - INFO - 启动风机叶片监控系统...
+2026-01-13 10:49:52,856 - blade_monitoring - INFO - 相机 A01 正在连接...
+2026-01-13 10:49:52,856 - blade_monitoring - INFO - 启动相机 A线1号机舱外 (A01)
+2026-01-13 10:49:52,893 - blade_monitoring - INFO - 相机 A02 正在连接...
+2026-01-13 10:49:52,893 - blade_monitoring - INFO - 启动相机 A线2号机舱外 (A02)
+2026-01-13 10:49:52,894 - blade_monitoring - INFO - 相机 C11 正在连接...
+2026-01-13 10:49:52,894 - blade_monitoring - INFO - 启动相机 C线11号机舱外 (C11)
+2026-01-13 10:49:52,894 - blade_monitoring - INFO - 相机 B02 正在连接...
+2026-01-13 10:49:52,894 - blade_monitoring - INFO - 启动相机 B线2号机舱外 (B02)
+2026-01-13 10:49:54,962 - blade_monitoring - INFO - 相机 A02 连接成功
+2026-01-13 10:49:57,897 - blade_monitoring - INFO - 检测工作线程启动
+2026-01-13 10:49:57,897 - blade_monitoring - INFO - 系统状态: 在线相机=1/4, 检测次数=0, 告警次数=0
+2026-01-13 10:49:57,897 - blade_monitoring - INFO - 健康监控启动
+2026-01-13 10:49:57,898 - blade_monitoring - INFO - 风机叶片监控系统启动完成
+2026-01-13 10:49:58,052 - blade_monitoring - INFO - Web API服务启动在端口 8080
+2026-01-13 10:49:58,053 - blade_monitoring - INFO - 风机叶片实时检测系统开始运行
+2026-01-13 10:49:58,054 - blade_monitoring - INFO - 系统运行中... 在线相机: 1/4, 运行时间: 5秒
+2026-01-13 10:50:26,334 - blade_monitoring - INFO - 相机 C11 连接成功
+2026-01-13 10:50:27,428 - blade_monitoring - INFO - 相机 A01 连接成功
+2026-01-13 10:50:27,898 - blade_monitoring - INFO - 系统状态: 在线相机=3/4, 检测次数=1, 告警次数=1
+2026-01-13 10:50:30,581 - blade_monitoring - ERROR - 发送告警到API失败: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/alerts (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000269F9D7E410>: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。'))
+2026-01-13 10:50:30,582 - blade_monitoring - WARNING - 检测到告警！相机: A线2号机舱外 (A02), 缺陷数量: 1
+2026-01-13 10:50:57,900 - blade_monitoring - INFO - 系统状态: 在线相机=3/4, 检测次数=1, 告警次数=1
+2026-01-13 10:50:58,056 - blade_monitoring - INFO - 系统运行中... 在线相机: 3/4, 运行时间: 65秒
+2026-01-13 10:51:27,901 - blade_monitoring - INFO - 系统状态: 在线相机=3/4, 检测次数=2, 告警次数=1
+2026-01-13 10:51:28,311 - blade_monitoring - ERROR - 相机 B02 错误: 无法打开RTSP流: rtsp://admin:Hd123456...@192.168.102.21:554/video1
+2026-01-13 10:51:28,435 - blade_monitoring - INFO - 相机 B02 5秒后尝试重连 (尝试 1/5)
+2026-01-13 10:51:33,436 - blade_monitoring - INFO - 相机 B02 正在连接...
+2026-01-13 10:51:49,094 - blade_monitoring - ERROR - 发送告警到API失败: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/alerts (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002699F7C5CD0>: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。'))
+2026-01-13 10:51:49,094 - blade_monitoring - WARNING - 检测到告警！相机: A线2号机舱外 (A02), 缺陷数量: 1
+2026-01-13 10:51:57,903 - blade_monitoring - INFO - 系统状态: 在线相机=3/4, 检测次数=3, 告警次数=2
+2026-01-13 10:51:57,904 - blade_monitoring - WARNING - 相机 B02 离线，尝试重启...
+2026-01-13 10:51:57,904 - blade_monitoring - INFO - 停止相机 B02
+2026-01-13 10:51:58,057 - blade_monitoring - INFO - 系统运行中... 在线相机: 3/4, 运行时间: 125秒
+2026-01-13 10:51:59,904 - blade_monitoring - WARNING - 相机 B02 已经在运行
+2026-01-13 10:52:29,905 - blade_monitoring - INFO - 系统状态: 在线相机=3/4, 检测次数=4, 告警次数=2
+2026-01-13 10:52:55,613 - blade_monitoring - ERROR - 发送告警到API失败: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/alerts (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002699F7D8A50>: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。'))
+2026-01-13 10:52:55,613 - blade_monitoring - WARNING - 检测到告警！相机: A线2号机舱外 (A02), 缺陷数量: 2
+2026-01-13 10:52:58,058 - blade_monitoring - INFO - 系统运行中... 在线相机: 3/4, 运行时间: 157秒
+2026-01-13 10:52:59,907 - blade_monitoring - INFO - 系统状态: 在线相机=3/4, 检测次数=5, 告警次数=3
+2026-01-13 10:53:04,810 - blade_monitoring - ERROR - 相机 B02 错误: 无法打开RTSP流: rtsp://admin:Hd123456...@192.168.102.21:554/video1
+2026-01-13 10:53:04,811 - blade_monitoring - INFO - 相机 B02 10秒后尝试重连 (尝试 2/5)
+2026-01-13 10:53:14,813 - blade_monitoring - INFO - 相机 B02 正在连接...
+2026-01-13 10:53:29,908 - blade_monitoring - INFO - 系统状态: 在线相机=3/4, 检测次数=6, 告警次数=4
+2026-01-13 10:53:29,908 - blade_monitoring - WARNING - 相机 B02 离线，尝试重启...
+2026-01-13 10:53:29,908 - blade_monitoring - INFO - 停止相机 B02
+2026-01-13 10:53:31,909 - blade_monitoring - WARNING - 相机 B02 已经在运行
+2026-01-13 10:53:32,201 - blade_monitoring - ERROR - 发送告警到API失败: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/alerts (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002699F7C6710>: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。'))
+2026-01-13 10:53:32,202 - blade_monitoring - WARNING - 检测到告警！相机: A线2号机舱外 (A02), 缺陷数量: 1
+2026-01-13 10:53:58,058 - blade_monitoring - INFO - 系统运行中... 在线相机: 3/4, 运行时间: 217秒
+2026-01-13 10:54:01,913 - blade_monitoring - INFO - 系统状态: 在线相机=3/4, 检测次数=6, 告警次数=4
+2026-01-13 10:54:12,522 - blade_monitoring - ERROR - 发送告警到API失败: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/alerts (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002699F786790>: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。'))
+2026-01-13 10:54:12,524 - blade_monitoring - WARNING - 检测到告警！相机: A线2号机舱外 (A02), 缺陷数量: 1
+2026-01-13 10:54:31,917 - blade_monitoring - INFO - 系统状态: 在线相机=3/4, 检测次数=7, 告警次数=5
+2026-01-13 10:54:46,197 - blade_monitoring - ERROR - 相机 B02 错误: 无法打开RTSP流: rtsp://admin:Hd123456...@192.168.102.21:554/video1
+2026-01-13 10:54:46,197 - blade_monitoring - INFO - 相机 B02 15秒后尝试重连 (尝试 3/5)
+2026-01-13 10:54:58,059 - blade_monitoring - INFO - 系统运行中... 在线相机: 3/4, 运行时间: 279秒
+2026-01-13 10:55:01,199 - blade_monitoring - INFO - 相机 B02 正在连接...
+2026-01-13 10:55:01,918 - blade_monitoring - INFO - 系统状态: 在线相机=3/4, 检测次数=8, 告警次数=5
+2026-01-13 10:55:01,918 - blade_monitoring - WARNING - 相机 B02 离线，尝试重启...
+2026-01-13 10:55:01,918 - blade_monitoring - INFO - 停止相机 B02
+2026-01-13 10:55:03,920 - blade_monitoring - WARNING - 相机 B02 已经在运行
+2026-01-13 10:55:33,920 - blade_monitoring - INFO - 系统状态: 在线相机=3/4, 检测次数=9, 告警次数=6
+2026-01-13 10:55:35,516 - blade_monitoring - ERROR - 发送告警到API失败: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/alerts (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002699F7D86D0>: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。'))
+2026-01-13 10:55:35,517 - blade_monitoring - WARNING - 检测到告警！相机: A线2号机舱外 (A02), 缺陷数量: 2
+2026-01-13 10:55:58,061 - blade_monitoring - INFO - 系统运行中... 在线相机: 3/4, 运行时间: 341秒
+2026-01-13 10:56:03,921 - blade_monitoring - INFO - 系统状态: 在线相机=3/4, 检测次数=9, 告警次数=6
+2026-01-13 10:56:17,993 - blade_monitoring - ERROR - 发送告警到API失败: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/alerts (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002699F7DB490>: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。'))
+2026-01-13 10:56:17,994 - blade_monitoring - WARNING - 检测到告警！相机: A线2号机舱外 (A02), 缺陷数量: 1
+2026-01-13 10:56:32,764 - blade_monitoring - ERROR - 相机 B02 错误: 无法打开RTSP流: rtsp://admin:Hd123456...@192.168.102.21:554/video1
+2026-01-13 10:56:32,764 - blade_monitoring - INFO - 相机 B02 20秒后尝试重连 (尝试 4/5)
+2026-01-13 10:56:33,923 - blade_monitoring - INFO - 系统状态: 在线相机=3/4, 检测次数=10, 告警次数=7
+2026-01-13 10:56:33,923 - blade_monitoring - WARNING - 相机 B02 离线，尝试重启...
+2026-01-13 10:56:33,923 - blade_monitoring - INFO - 停止相机 B02
+2026-01-13 10:56:35,926 - blade_monitoring - WARNING - 相机 B02 已经在运行
+2026-01-13 10:56:52,765 - blade_monitoring - INFO - 相机 B02 正在连接...
+2026-01-13 10:56:58,062 - blade_monitoring - INFO - 系统运行中... 在线相机: 3/4, 运行时间: 401秒
+2026-01-13 10:57:05,927 - blade_monitoring - INFO - 系统状态: 在线相机=3/4, 检测次数=11, 告警次数=7
+2026-01-13 10:57:35,996 - blade_monitoring - INFO - 系统状态: 在线相机=3/4, 检测次数=12, 告警次数=7
+2026-01-13 10:57:58,063 - blade_monitoring - INFO - 系统运行中... 在线相机: 3/4, 运行时间: 463秒
+2026-01-13 10:58:06,016 - blade_monitoring - INFO - 系统状态: 在线相机=3/4, 检测次数=12, 告警次数=7
+2026-01-13 10:58:24,298 - blade_monitoring - ERROR - 相机 B02 错误: 无法打开RTSP流: rtsp://admin:Hd123456...@192.168.102.21:554/video1
+2026-01-13 10:58:24,299 - blade_monitoring - INFO - 相机 B02 25秒后尝试重连 (尝试 5/5)
+2026-01-13 10:58:36,030 - blade_monitoring - INFO - 系统状态: 在线相机=3/4, 检测次数=13, 告警次数=7
+2026-01-13 10:58:36,031 - blade_monitoring - WARNING - 相机 B02 离线，尝试重启...
+2026-01-13 10:58:36,032 - blade_monitoring - INFO - 停止相机 B02
+2026-01-13 10:58:38,034 - blade_monitoring - WARNING - 相机 B02 已经在运行
+2026-01-13 10:58:49,300 - blade_monitoring - INFO - 相机 B02 正在连接...
+2026-01-13 10:58:58,064 - blade_monitoring - INFO - 系统运行中... 在线相机: 3/4, 运行时间: 523秒
+2026-01-13 10:59:08,077 - blade_monitoring - INFO - 系统状态: 在线相机=3/4, 检测次数=13, 告警次数=7
+2026-01-13 10:59:35,828 - blade_monitoring - WARNING - 相机 A01 读取帧失败
+2026-01-13 10:59:36,155 - blade_monitoring - INFO - 相机 A01 正在连接...
+2026-01-13 10:59:37,794 - blade_monitoring - INFO - 相机 A01 连接成功
+2026-01-13 10:59:38,090 - blade_monitoring - INFO - 系统状态: 在线相机=3/4, 检测次数=13, 告警次数=7
+2026-01-13 10:59:58,069 - blade_monitoring - INFO - 系统运行中... 在线相机: 3/4, 运行时间: 585秒
+2026-01-13 11:00:08,095 - blade_monitoring - INFO - 系统状态: 在线相机=3/4, 检测次数=14, 告警次数=7
+2026-01-13 11:00:14,287 - blade_monitoring - INFO - 收到信号 2，正在关闭系统...
+2026-01-13 11:00:14,288 - blade_monitoring - INFO - 正在清理系统资源...

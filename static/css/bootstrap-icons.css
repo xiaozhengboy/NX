@@ -1,0 +1,34 @@
+@font-face {
+  font-display: block;
+  font-family: "bootstrap-icons";
+  src: url("../fonts/bootstrap-icons.woff2") format("woff2");
+}
+
+.bi::before {
+  display: inline-block;
+  font-family: bootstrap-icons !important;
+  font-style: normal;
+  font-weight: normal !important;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  vertical-align: -.125em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 系统使用的图标 */
+.bi-arrow-clockwise::before { content: "\F116"; }
+.bi-arrow-counterclockwise::before { content: "\F117"; }
+.bi-check-circle::before { content: "\F26B"; }
+.bi-clock::before { content: "\F293"; }
+.bi-camera-video::before { content: "\F21F"; }
+.bi-download::before { content: "\F30A"; }
+.bi-eye::before { content: "\F341"; }
+.bi-funnel::before { content: "\F3E1"; }
+.bi-grid-3x3-gap::before { content: "\F3F9"; }
+.bi-table::before { content: "\F5AA"; }
+.bi-x-circle::before { content: "\F623"; }
+.bi-x-lg::before { content: "\F659"; }
+.bi-zoom-in::before { content: "\F62C"; }
+.bi-zoom-out::before { content: "\F62D"; }

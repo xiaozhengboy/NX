@@ -1,0 +1,18 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="time" />
+          <option value="re" />
+          <option value="项目.jianshu.open" />
+          <option value="项目.jianshu.len" />
+          <option value="项目.jianshu.print" />
+          <option value="numpy" />
+          <option value="urllib.parse" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
