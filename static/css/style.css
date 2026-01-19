@@ -752,3 +752,99 @@ optgroup option {
 #refreshCamerasBtn,#toggleCameraSearchBtn{
     width:50px;
 }
+
+
+
+/* 报告生成按钮样式 */
+.btn-outline-success {
+    color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-outline-success:hover {
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+/* 下拉菜单样式 */
+.dropdown-menu {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+/* 复选框样式 */
+.form-check-input:checked {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.form-check-label {
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+
+/* 报告预览模态框样式 */
+.modal-header.bg-primary {
+    background: linear-gradient(135deg, #1890ff 0%, #0056b3 100%);
+}
+
+.btn-close-white {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* 卡片样式 */
+.card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.card-header.bg-light {
+    background-color: #f8f9fa !important;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* 开关样式 */
+.form-switch .form-check-input {
+    width: 2.5em;
+    height: 1.3em;
+}
+
+.form-switch .form-check-input:checked {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+/* 徽章样式 */
+.badge {
+    font-size: 0.8em;
+    padding: 0.3em 0.6em;
+    border-radius: 10px;
+}
+
+/* 时间格式化样式 */
+.time-badge {
+    background-color: #e3f2fd;
+    color: #1976d2;
+    padding: 0.2em 0.5em;
+    border-radius: 4px;
+    font-family: monospace;
+}
+
+/* 报告结构列表样式 */
+.alert-light {
+    background-color: #fafafa;
+    border-left: 4px solid #1890ff;
+}
+
+.alert-light .badge {
+    min-width: 24px;
+    text-align: center;
+}

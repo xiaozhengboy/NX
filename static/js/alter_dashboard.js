@@ -15,6 +15,10 @@ let isInitialLoad = true; // 标记是否为初始加载
 let allCameras = new Set();  // 存储所有风机的集合
 let cachedCameras = [];      // 缓存的排序后风机列表
 
+let reportGenerationInProgress = false;
+let downloadData = false;
+let downloadImages = false;
+
 // 风机号搜索功能
 let cameraSearchActive = false;
 
@@ -1439,7 +1443,10 @@ function initDefectFilterGrouped() {
     console.log('缺陷下拉框已按分类初始化');
 }
 
-
+function confirmGenerateReport() {
+    // 可以直接调用generateReportFromPreview
+    generateReportFromPreview();
+}
 
 
 // 固定缺陷下拉框初始化函数（独立，不会被覆盖）
@@ -1480,6 +1487,232 @@ function initializeFixedDefectFilter() {
 }
 
 
+// 初始化报告生成功能
+function initReportGeneration() {
+    // 报告生成按钮点击事件
+    $('#generateReportBtn').click(function(e) {
+        e.stopPropagation();
+
+        if (currentSearchMode !== 'file') {
+            alert('请在历史搜索模式下生成报告');
+            $(this).dropdown('hide');
+            return;
+        }
+
+        // 检查是否已设置时间范围
+        const startTime = $('#startTime').val();
+        const endTime = $('#endTime').val();
+
+        if (!startTime || !endTime) {
+            alert('请先设置时间范围');
+            $(this).dropdown('hide');
+            return;
+        }
+    });
+
+    // 确认生成报告按钮事件
+    // 修改确认生成报告按钮事件中的提示文本
+$('#confirmGenerateReportBtn').click(function() {
+    if (reportGenerationInProgress) {
+        return;
+    }
+
+    // 获取选项状态
+    downloadData = $('#downloadDataCheck').is(':checked');
+    downloadImages = $('#downloadImagesCheck').is(':checked');
+
+    // 收集搜索条件
+    const startTime = $('#startTime').val();
+    const endTime = $('#endTime').val();
+    const cameraFilter = $('#cameraFilter').val();
+    const defectFilter = $('#defectFilter').val();
+    const confidenceMin = parseFloat($('#confidenceMin').val()) || 0;
+
+    if (!startTime || !endTime) {
+        alert('请设置开始时间和结束时间');
+        return;
+    }
+
+    // 确认生成报告 - 修改提示文本
+    const optionText = [];
+    if (downloadData) optionText.push('下载源数据Excel');
+    if (downloadImages) optionText.push('下载缺陷图片文件包');  // 修改提示
+
+    const confirmMessage = `确定生成Word报告吗？\n\n` +
+                          `时间范围: ${startTime} 至 ${endTime}\n` +
+                          `风机号: ${cameraFilter || '全部'}\n` +
+                          `缺陷类型: ${defectFilter || '全部'}\n` +
+                          `备注:\n` +
+                          `  • Word报告中始终包含缺陷图片\n` +  // 新增说明
+                          `  • 额外选项: ${optionText.length > 0 ? optionText.join('、') : '无'}`;
+
+    if (!confirm(confirmMessage)) {
+        return;
+    }
+
+    // 关闭下拉菜单
+    $('#reportDropdown').dropdown('hide');
+
+    // 生成报告
+    generateWordReport({
+        start_time: startTime,
+        end_time: endTime,
+        camera_id: cameraFilter || '',
+        defect_name: defectFilter || '',
+        min_confidence: confidenceMin,
+        download_data: downloadData,
+        download_images: downloadImages
+    });
+});
+}
+
+
+
+// 生成Word报告函数
+function generateWordReport(reportData) {
+    reportGenerationInProgress = true;
+
+    // 保存原始按钮状态
+    const originalBtn = $('#generateReportBtn');
+    const originalIcon = originalBtn.find('i').clone();
+    const originalText = originalBtn.html();
+
+    // 更新按钮状态为生成中
+    originalBtn.html('<i class="bi bi-hourglass-split spin"></i> 生成中...');
+    originalBtn.prop('disabled', true);
+
+    // 显示加载遮罩
+    showLoadingOverlay('正在生成Word报告，请稍候...');
+
+    // 发送生成报告请求
+    $.ajax({
+        url: '/api/report/generate-word',
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(reportData),
+        xhrFields: {
+            responseType: 'blob'  // 接收二进制数据
+        },
+        success: function(data, status, xhr) {
+            // 隐藏加载遮罩
+            hideLoadingOverlay();
+
+            // 从响应头获取文件名
+            let filename = '风机检测报告.docx';
+            const contentDisposition = xhr.getResponseHeader('Content-Disposition');
+            if (contentDisposition) {
+                const matches = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/.exec(contentDisposition);
+                if (matches != null && matches[1]) {
+                    filename = matches[1].replace(/['"]/g, '');
+                }
+            }
+
+            // 创建下载链接
+            const blob = new Blob([data], {
+                type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+            });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+
+            // 清理
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+
+            // 显示成功消息
+            showNotification('Word报告生成成功！', 'success');
+        },
+        error: function(xhr, status, error) {
+            hideLoadingOverlay();
+
+            let errorMessage = '报告生成失败';
+            try {
+                const errorData = JSON.parse(xhr.responseText);
+                errorMessage = errorData.message || errorMessage;
+            } catch (e) {
+                errorMessage = error || errorMessage;
+            }
+
+            showNotification(errorMessage, 'error');
+            console.error('报告生成失败:', error);
+        },
+        complete: function() {
+            // 恢复按钮状态
+            reportGenerationInProgress = false;
+            originalBtn.html(originalText);
+            originalBtn.prop('disabled', false);
+        }
+    });
+}
+
+// 显示加载遮罩
+function showLoadingOverlay(message = '正在处理，请稍候...') {
+    // 移除已存在的遮罩
+    $('#loadingOverlay').remove();
+
+    // 创建遮罩
+    const overlay = $(`
+        <div id="loadingOverlay" style="
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            flex-direction: column;
+        ">
+            <div class="spinner-border" style="width:3rem;height:3rem;margin-bottom:1rem;" role="status">
+                <span class="visually-hidden">下载中...</span>
+            </div>
+            <div style="font-size:1.2rem;">${message}</div>
+        </div>
+    `);
+
+    $('body').append(overlay);
+}
+
+// 隐藏加载遮罩
+function hideLoadingOverlay() {
+    $('#loadingOverlay').remove();
+}
+
+// 显示通知
+function showNotification(message, type = 'info') {
+    // 移除已存在的通知
+    $('.alert-notification').remove();
+
+    const alertClass = type === 'success' ? 'alert-success' :
+                      type === 'error' ? 'alert-danger' :
+                      type === 'warning' ? 'alert-warning' : 'alert-info';
+
+    const notification = $(`
+        <div class="alert ${alertClass} alert-dismissible fade show alert-notification"
+             style="position:fixed;top:20px;right:20px;z-index:9999;min-width:300px;">
+            <div class="d-flex align-items-center">
+                <i class="bi ${type === 'success' ? 'bi-check-circle' : type === 'error' ? 'bi-x-circle' : 'bi-info-circle'} me-2"></i>
+                <div>${message}</div>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    `);
+
+    $('body').append(notification);
+
+    // 3秒后自动消失
+    setTimeout(() => {
+        notification.alert('close');
+    }, 3000);
+}
+
+
 // 初始化
 $(document).ready(function() {
 
@@ -1507,6 +1740,9 @@ $(document).ready(function() {
         // 加载失败时使用默认列表
         useDefaultCameras();
     });
+
+    // 报告生成相关初始化
+    initReportGeneration();
 
 
     // 模式切换按钮事件

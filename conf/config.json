@@ -14,5 +14,11 @@
     "frame_skip_ratio": 3,
     "image_format": "RGB",
     "save_annotated_images": true,
-    "save_segmented_images": false
+    "save_segmented_images": false,
+    "run_time": {
+      "start_hour": 9,
+      "start_minute": 0,
+      "end_hour": 17,
+      "end_minute": 0
+    }
 }
